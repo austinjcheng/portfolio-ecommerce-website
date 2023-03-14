@@ -2,7 +2,6 @@ import Link from "next/link";
 import fs from "fs";
 import matter from "gray-matter";
 import styled from "styled-components";
-import UnstyledLink from "../components/styled/UnstyledLink";
 import useCart from "../hooks/useCart";
 
 const Container = styled.div`
@@ -39,14 +38,12 @@ const renderProduct = (product, addItemToCart) => {
 
   return (
     <Link key={product.id} href={product.slug}>
-      <UnstyledLink>
         <Container>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <button onClick={handleClick}>Add to cart</button>
           <Price>${product.price / 100}</Price>
         </Container>
-      </UnstyledLink>
     </Link>
   );
 };

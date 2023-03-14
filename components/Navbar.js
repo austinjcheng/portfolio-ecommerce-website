@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import UnstyledLink from "./styled/UnstyledLink";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../hooks/useCart";
 
@@ -37,7 +36,7 @@ const Navbar = () => {
     <Nav>
       <NavContainer>
         <Link href="/">
-          <UnstyledLink>Super Store</UnstyledLink>
+          Super Store
         </Link>
         <ShoppingCart onClick={handleClick} />
       </NavContainer>
