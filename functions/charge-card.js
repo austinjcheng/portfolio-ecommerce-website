@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY.toString());
 const products = require("./products.json");
 
 exports.handler = async (event, context) => {
@@ -13,10 +13,9 @@ exports.handler = async (event, context) => {
   });
 
   console.log(cartWithProducts);
-  // talking to Stripe
   const lineItems = cartWithProducts.map((product) => ({
     price_data: {
-      currency: "aud",
+      currency: "usd",
       product_data: {
         name: product.name,
       },
@@ -29,11 +28,10 @@ exports.handler = async (event, context) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.URL}/success`,
-    cancel_url: `${process.env.URL}/cancelled`,
+    success_url: `/success`,
+    cancel_url: `/cancelled`,
   });
 
-  // charging the card
   return {
     statusCode: 200,
     body: JSON.stringify({
